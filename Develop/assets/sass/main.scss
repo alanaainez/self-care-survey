@@ -1,0 +1,18 @@
+@import "~bulma/bulma";
+
+// Define custom variables
+$navbar-background-color: #00d1b2;
+$navbar-text-color: #ffffff;
+
+// Use the variables in custom styles
+.navbar {
+  background-color: $navbar-background-color;
+  color: $navbar-text-color;
+}
+
+.button {
+  background-color: $navbar-background-color;
+  &:hover {
+    background-color: darken($navbar-background-color, 10%);
+  }
+}
