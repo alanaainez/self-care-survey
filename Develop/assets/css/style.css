@@ -1,17 +1,110 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 | @import "~bulma/bulma";
- *   |         ^^^^^^^^^^^^^^
- *   '
- *   main.scss 1:9  root stylesheet */
+:root {
+  --main-bg-color: #a1dbf1;
+  --main-text-color: #333333;
+  --button-hover-color: #e4f4f3;
+  --navbar-bg-color: #00b6bc;
+  --navbar-text-color: #71d5e4;
+}
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  font-family: 'Arial', sans-serif;
+}
+
+header {
+  background-color: var(--navbar-bg-color);
+  padding: 1rem;
+}
+
+header > h1 {
+  color: var(--button-hover-color);
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+header > p {
+  text-align: center;
+  font-weight: bold;
+}
+
+header > nav > ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+}
+
+header > nav > ul > li {
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+#about-self-care {
+  text-align: center;
+}
+form {
+  margin: 2rem auto;
+  max-width: 600px;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form .form-info {
+  margin-bottom: 1.5rem;
+}
+
+form .form-info label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
   display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import \"~bulma/bulma\";\d\a   \2502          ^^^^^^^^^^^^^^\a   \2575 \a   main.scss 1:9  root stylesheet";
+}
+
+form .form-entry,
+form textarea,
+form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+.button {
+  background-color: var(--navbar-bg-color);
+  color: var(--navbar-text-color);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.is-hidden {
+  display: none;
+}
+
+footer {
+  background-color: var(--navbar-bg-color);
+  padding: 1rem;
+  text-align: center;
+  color: var(--navbar-text-color);
+}
+
+footer a {
+  color: var(--button-hover-color);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }

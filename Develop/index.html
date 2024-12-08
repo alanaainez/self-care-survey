@@ -11,12 +11,11 @@
 <body>
 <header>
     <h1 id="title">Self-Care Survey</h1>
-      <p id="description"><i>Take a moment for you</i></p>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <ul class="navbar-brand">
+      <p id="description"><i>Thank you for taking a moment for you!</i></p>
+    <nav>
+      <ul>
         <li><a href="#about-self-care">About Self-Care</a></li>
-        <li><a href="survey-form">Questionnaire</a></li>
-        <li><a href="#data">Data</a></li>
+        <li><a href="#learn-more">Learn More</a></li>
       </ul>
     </nav>
 </header>
@@ -36,33 +35,36 @@
 
 <form id="survey-form">
 <!-- Personal Information -->
-    <section class="form-info">
-      <label id="name-label" for="name">Name</label>
-        <input class="input is-primary" type="text" placeholder="Type your name" required/>
-    </section>
-    <section class="field">
-      <p class="control has-icons-left has-icons-right">
-        <input class="input is-info" type="email" placeholder="Email" />
-        <span class="icon is-small is-left">
-          <i class="fas fa-envelope"></i>
-        </span>
-      </section>
-    <section class="form-info">
-      <label id="number-label" for="age">Age</label>
-        <input type="number" name="age" id="number" min="15" max="100" class="form-entry" placeholder="Age" required/>
-    </section>
+<section class="form-info">
+  <label id="name-label" for="name">Name</label>
+  <input id="name" class="input is-primary" type="text" name="name" placeholder="Type your name" required />
+</section>
+
+<section class="field">
+  <label for="email">Email</label>
+  <p class="control has-icons-left has-icons-right">
+    <input id="email" class="input is-info" type="email" name="email" placeholder="Email" />
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+  </p>
+</section>
+
+<section class="form-info">
+  <label id="number-label" for="age">Age</label>
+  <input id="number" type="number" name="age" min="15" max="100" class="form-entry" placeholder="Age" required />
+</section>
 
     <!-- Survey Questions -->
     <section class="form-info">
-      <label for="answer">What does self-care mean to you?</label>
-      <textarea class="textarea is-info" placeholder="Enter your answer" required>
-      </textarea>
+      <label>What does self-care mean to you?</label>
+      <textarea class="textarea is-info" id="answer" placeholder="Enter your answer" required></textarea>
     </section>
 
     <section class="form-info">
       <h3>What is your occupation?</h3>
         <div class="control">
-        <textarea class="textarea is-primary has-fixed-size" name="occupation" placeholder="Enter your occupation" required>
+        <textarea class="textarea is-primary has-fixed-size" id="occupation" placeholder="Enter your occupation" required>
         </textarea>
         </div>
     </section>
@@ -72,19 +74,19 @@
       <h3>What type of activities do you find to be relaxing/able to ease stress?
       <span class="hint">(Check all that apply)</span></h3>
         <div class="checkboxes">
-        <label class="checkbox"><input type="checkbox" />Sports/Exercise</label>
-        <label class="checkbox"><input type="checkbox" />Listening/Playing Music or Dancing</label>
-        <label class="checkbox"><input type="checkbox" />Arts and Crafts</label>
-        <label class="checkbox"><input type="checkbox" />Reading/Writing</label>
-        <label class="checkbox"><input type="checkbox" />Solving Puzzles</label>
-        <label class="checkbox"><input type="checkbox" />Socializing with Friends/Family</label>
-        <label class="checkbox"><input type="checkbox" />Meditation/Gratitude</label>
-        <label class="checkbox"><input type="checkbox" />Playing Video Games</label>
-        <label class="checkbox"><input type="checkbox" />Walks/Hikes</label>
-        <label class="checkbox"><input type="checkbox" />Cooking</label>
-        <label class="checkbox"><input type="checkbox" />Self-Pampering/Grooming</label>
-        <label class="checkbox"><input type="checkbox" />Spiritual/Religious Activity</label>
-        <label class="checkbox"><input type="checkbox" />Other</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Sports/Exercise"/>Sports/Exercise</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Listening/Playing Music or Dancing"/>Listening/Playing Music or Dancing</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Arts and Crafts"/>Arts and Crafts</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Reading/Writing"/>Reading/Writing</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Solving Puzzles"/>Solving Puzzles</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Socializing with Friends/Family"/>Socializing with Friends/Family</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Meditation/Gratitude"/>Meditation/Gratitude</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Games"/>Games</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Walks/Hikes"/>Walks/Hikes</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Cooking"/>Cooking</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Self-Pampering/Grooming"/>Self-Pampering/Grooming</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Spiritual/Religious Activity"/>Spiritual/Religious Activity</label>
+        <label class="checkbox"><input type="checkbox" name="relax-activity" value="Other"/>Other</label>
           <input type="text" name="activity" id="activity" class="form-entry" placeholder="Please specify"/>
       </div>
     </section>
@@ -92,13 +94,13 @@
     <section class="form-info">
       <h3>How often are you able to give yourself self-care?</h3>
       <div class="radios">
-        <label class="radio"><input type="radio" name="care-frequency" checked/>Once a Day</label>
-        <label class="radio"><input type="radio" name="care-frequency"/>Every Other Day</label>
-        <label class="radio"><input type="radio" name="care-frequency"/>Once a Week</label>
-        <label class="radio"><input type="radio" name="care-frequency"/>2-3 Times a Month</label>
-        <label class="radio"><input type="radio" name="care-frequency"/>Once a Month</label>
-        <label class="radio"><input type="radio" name="care-frequency"/>A Few Times a Year</label>
-        <label class="radio"><input type="radio" name="care-frequency"/>Once a Year</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="Once a Day"/>Once a Day</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="Every Other Day"/>Every Other Day</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="Once a Week"/>Once a Week</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="2-3 Times a Month"/>2-3 Times a Month</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="Once a Month"/>Once a Month</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="A Few Times a Year"/>A Few Times a Year</label>
+        <label class="radio"><input type="radio" name="care-frequency" value="Once a Year"/>Once a Year</label>
       </div>
       </section>
 
@@ -106,8 +108,8 @@
     <section class="form-info">
       <h3>In what aspect of your life do you feel the most stress?</h3>
       <div class="select is-info">
-      <select required>
-        <option disable selected value>Choose an option</option>
+      <select id ="dropdown" name="drop-down" required>
+        <option disabled selected value>Choose an option</option>
         <option value="finances">Finances</option>
         <option value="social">Social/Relationships</option>
         <option value="work">Work</option>
@@ -123,21 +125,26 @@
     <!-- Comment -->
     <section class="form-info">
       <h3>What changes do you feel would help you focus on your self-care more? (Optional)</h3>
-        <textarea class="textarea is-primary" placeholder="Make your comment here"></textarea>
+        <textarea class="textarea is-primary" id="comment" placeholder="Make your comment here"></textarea>
     </section>
 
     <section class="form-info">
-      <input class="button is-success is-rounded" type="submit" value="Submit Survey" />
+      <input class="button is-success is-rounded is-large" type="submit" value="Submit Survey" />
+      <div id="success-message" class="notification is-success is-hidden">
+        Survey data has been saved!
+      </div>      
     </section>
   </form>
 </main>
 
-<footer id= "contact-information">
+<script src="./index.js"></script>
+
+<footer id= "learn-more">
   <p class="content has-text-centered">&copy; 2024 Survey</p>
   <ul>
     <li><a href="https://www.youtube.com/@Psych2go">Psych2Go Channel</a></li>
     <li><a href="https://github.com/alanaainez">My GitHub</a></li>        
-    <li><a href="www.linkedin.com/in/alana-rodriguez-473abb35">My LinkedIn</a></li>            
+    <li><a href="https://www.linkedin.com/in/alana-rodriguez-473abb35">My LinkedIn</a></li>            
     </ul>
   </footer>
   </body>    
