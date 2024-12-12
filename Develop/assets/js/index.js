@@ -15,13 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('input[name="activity"]:checked')
         ).map((input) => input.value);
 
-        //console.log("Name:", name, "Email:", email, "Age:", age);
-
-        // Include "Other" activity if provided
-        const otherActivity = document.getElementById("activity").value;
-        if (otherActivity) {
-            activities.push(otherActivity);
-        }
+        //console.log("Name:", name, "Email:", email, "Age:", age);        
 
         const careFrequency = document.querySelector(
             'input[name="care-frequency"]:checked'

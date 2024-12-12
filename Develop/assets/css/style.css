@@ -75,6 +75,17 @@ form textarea {
   resize: vertical;
 }
 
+#data-container {
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+#stressChart,
+#activityChart,
+#frequencyChart {
+  margin-bottom: 20px;
+}
+
 .button {
   background-color: var(--navbar-bg-color);
   color: var(--navbar-text-color);

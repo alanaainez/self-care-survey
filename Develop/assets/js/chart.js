@@ -9,91 +9,140 @@ const stressLabels = [];
 const stressValues = [];
 const activityLabels = [];
 const activityValues = [];
-const frequencyLabels = ["Daily", "Weekly", "Monthly", "Rarely", "Annually"];
+const frequencyLabels = ["Daily", "Weekly", "Biweekly", "Monthly", "Rarely", "Annually"];
 const frequencyValues = [0, 0, 0, 0, 0]; // Initialize counts for frequency categories
 
 storedData.forEach((entry) => {
-    // Process Stressors data
-    if (!stressLabels.includes(entry["Most Stressful Factor"])) {
-        stressLabels.push(entry["Most Stressful Factor"]);
-        stressValues.push(1);
-    } else {
-        const index = stressLabels.indexOf(entry["Most Stressful Factor"]);
-        stressValues[index]++;
-    }
+    // Stressors data
+    if (entry.mostStress) {
+      const stressIndex = stressLabels.indexOf(entry.mostStress);
+      if (stressIndex === -1) {
+          stressLabels.push(entry.mostStress);
+          stressValues.push(1);
+      } else {stressValues[stressIndex]++;}
+  }
 
-    // Process Activities data
-    entry["Activities"].split(", ").forEach((activity) => {
-        if (!activityLabels.includes(activity)) {
+  // Activity data
+  if (entry.activities) {
+    entry.activities.forEach((activity) => {
+        const activityIndex = activityLabels.indexOf(activity);
+        if (activityIndex === -1) {
             activityLabels.push(activity);
             activityValues.push(1);
-        } else {
-            const index = activityLabels.indexOf(activity);
-            activityValues[index]++;
-        }
+        } else {activityValues[activityIndex]++;}
     });
+}
 
-    // Process Care Frequency data
-    const frequencyIndex = frequencyLabels.indexOf(entry["Care Frequency"]);
-    if (frequencyIndex !== -1) {
-        frequencyValues[frequencyIndex]++;
-    }
+  // Frequency data
+  if (entry.careFrequency) {
+      const frequencyIndex = frequencyLabels.indexOf(entry.careFrequency);
+      if (frequencyIndex !== -1) {
+          frequencyValues[frequencyIndex]++;}
+  }
 });
 
+// Return the prepared data
 return {
-    stressData: { labels: stressLabels, data: stressValues },
-    activityData: { labels: activityLabels, data: activityValues },
-    frequencyData: { labels: frequencyLabels, data: frequencyValues },
+  stress: { labels: stressLabels, values: stressValues },
+  activity: { labels: activityLabels, values: activityValues },
+  frequency: { labels: frequencyLabels, values: frequencyValues },
 };
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   // Prepare chart data from localStorage
-  const { stressData, activityData, frequencyData } = prepareChartData();
+  const { stress, activity, frequency } = prepareChartData();
 
   // Stressors Doughnut Chart
   const stressCtx = document.getElementById("stressChart").getContext("2d");
   new Chart(stressCtx, {
       type: "doughnut",
       data: {
-          labels: stressData.labels,
+          labels: stress.labels,
           datasets: [
               {
-                  data: stressData.data,
+                  data: stress.values,
                   backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
               },
           ],
       },
-  });
+      options: {
+        responsive: true,
+        plugins: {
+            legend: {position: "top",},
+        },
+    },
+});
 
   // Activities Pie Chart
   const activityCtx = document.getElementById("activityChart").getContext("2d");
   new Chart(activityCtx, {
       type: "pie",
       data: {
-          labels: activityData.labels,
+          labels: activity.labels,
           datasets: [
               {
-                  data: activityData.data,
+                  data: activity.values,
                   backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
               },
           ],
       },
-  });
+      options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "right",
+            },
+        },
+    },
+});
 
   // Frequency Bar Chart
   const frequencyCtx = document.getElementById("frequencyChart").getContext("2d");
-  new Chart(frequencyCtx, {
-      type: "bar",
-      data: {
-          labels: frequencyData.labels,
-          datasets: [
-              {
-                  label: "Frequency",
-                  data: frequencyData.data,
-                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
-              },
-          ],
-      },
-  });
+new Chart(frequencyCtx, {
+    type: "bar",
+    data: {
+        labels: frequency.labels, // The categories of frequency (Daily, Weekly, etc.)
+        datasets: [
+            {
+                label: "Frequency",
+                data: frequency.values, // The count of occurrences for each frequency category
+                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+                borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+                borderWidth: 1,
+            },
+        ],
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                beginAtZero: true, 
+                title: {
+                    display: true,
+                    text: "Frequency Categories",
+                },
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: "Count",
+                },
+            },
+        },
+        plugins: {
+            legend: {display: true, position: "top",},
+            tooltip: {enabled: true,},
+            datalabels: {
+                display: true, 
+                color: "black", 
+                align: "top", 
+                font: {
+                    weight: "bold",
+                },
+            },
+        },
+    },
+});
 });
