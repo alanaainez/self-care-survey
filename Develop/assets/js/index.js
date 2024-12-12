@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form from reloading the page
+        console.log("Form submission started");
 
         // Retrieve data from the form
         const name = document.getElementById("name").value;
@@ -11,8 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const answer = document.getElementById("answer").value;
         const occupation = document.getElementById("occupation").value;
         const activities = Array.from(
-            document.querySelectorAll('input[name="relax-activity"]:checked')
+            document.querySelectorAll('input[name="activity"]:checked')
         ).map((input) => input.value);
+
+        console.log("Name:", name, "Email:", email, "Age:", age);
 
         // Include "Other" activity if provided
         const otherActivity = document.getElementById("activity").value;
@@ -40,31 +43,19 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // Initialize surveyDataArray from localStorage or as an empty array
-        let surveyDataArray;
-        try {
-            const storedData = localStorage.getItem("selfCareSurveyData");
-            surveyDataArray = storedData ? JSON.parse(storedData) : [];
-            if (!Array.isArray(surveyDataArray)) {
-                throw new Error("Data in localStorage is not an array.");
-            }
-        } catch (error) {
-            console.error("Error parsing local storage data or invalid format:", error);
-            surveyDataArray = []; // Reset to an empty array
-        }
-
-        // Add the new survey data to the array
+        let surveyDataArray = JSON.parse(localStorage.getItem("selfCareSurveyData")) || [];
         surveyDataArray.push(newSurveyData);
+        localStorage.setItem("selfCareSurveyData", JSON.stringify(surveyDataArray));
 
-        // Save the updated array back to local storage
-        try {
-            localStorage.setItem("selfCareSurveyData", JSON.stringify(surveyDataArray));
-            console.log("Updated survey data saved:", surveyDataArray);
-        } catch (error) {
-            console.error("Error saving data to local storage:", error);
-        }
+        console.log("Data saved to local storage");
 
-        // Provide feedback to the user
-        alert("Survey data has been saved!");
-        form.reset();
+        // Redirect the user after submitting the survey
+        redirectPage("./data.html"); // Replace with your actual data page URL
+
+        console.log("Redirection initiated");
     });
 });
+// Function to handle redirection
+function redirectPage(url) {
+    location.assign(url);
+}
