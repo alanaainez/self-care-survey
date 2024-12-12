@@ -11,20 +11,28 @@
   
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="./assets/js/data.js"></script>
-  <script scrc="./assets/js/chart.js"></script>
+  <script src="./assets/js/chart.js"></script>
 </head>
 
 <body>
 <header>
     <h1 id="title">Self-Care Survey</h1>
       <p id="description"><i>Thank you for taking a moment for you!</i></p>
-    <button id="back">Back</button>
+    <button id="backButton">Back</button>
 </header>
 
 <main class="form-data">
     <section id="data-container" style="width: 70%; margin: auto;">
-        <canvas id="surveyChart"></canvas>
+        <canvas id="stressChart"></canvas>
     </section>
+
+    <section id="data-container" style="width: 70%; margin: auto;">
+      <canvas id="activityChart"></canvas>
+  </section>
+
+  <section id="data-container" style="width: 70%; margin: auto;">
+    <canvas id="frequencyChart"></canvas>
+</section>
 </main>
 
 <footer id= "learn-more">

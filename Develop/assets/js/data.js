@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const surveyData = JSON.parse(localStorage.getItem("selfCareSurveyData")) || [];
-    const back = document.getElementById("back");
+    const back = document.getElementById("backButton");
     const dataContainer = document.getElementById("data-container");
-if (back) {
+
+    if (back) {
     back.addEventListener("click", () => {
         window.location.assign("index.html");
     });
@@ -11,16 +12,17 @@ if (back) {
     }
     surveyData.forEach((entry, index) => {
         const formEntry = document.createElement("div");
+        formEntry.classList.add("box");
         formEntry.innerHTML = `
             <h3>Entry ${index + 1}</h3>
-            <p>Name: ${entry.name}</p>
-            <p>Email: ${entry.email}</p>
-            <p>Age: ${entry.age}</p>
-            <p>Occupation: ${entry.occupation}</p>
-            <p>Activities: ${entry.activities.join(", ")}</p>
-            <p>Care Frequency: ${entry.careFrequency}</p>
-            <p>Most Stressful Factor: ${entry.mostStress}</p>
-            <p>Comment: ${entry.comment}</p>
+            <p><strong>Name:</strong> ${entry.name}</p>
+            <p><strong>Email:</strong> ${entry.email}</p>
+            <p><strong>Age:</strong> ${entry.age}</p>
+            <p><strong>Occupation:</strong> ${entry.occupation}</p>
+            <p><strong>Activities:</strong> ${entry.activities.join(", ")}</p>
+            <p><strong>Care Frequency:</strong> ${entry.careFrequency}</p>
+            <p><strong>Most Stressful Factor:</strong> ${entry.mostStress}</p>
+            <p><strong>Comment:</strong> ${entry.comment || "No comment"}</p>
         `;
         dataContainer.appendChild(formEntry);
     });

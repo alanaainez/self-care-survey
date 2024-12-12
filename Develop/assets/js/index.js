@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form from reloading the page
-        console.log("Form submission started");
+        //console.log("Form submission started");
 
         // Retrieve data from the form
         const name = document.getElementById("name").value;
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('input[name="activity"]:checked')
         ).map((input) => input.value);
 
-        console.log("Name:", name, "Email:", email, "Age:", age);
+        //console.log("Name:", name, "Email:", email, "Age:", age);
 
         // Include "Other" activity if provided
         const otherActivity = document.getElementById("activity").value;
@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
         surveyDataArray.push(newSurveyData);
         localStorage.setItem("selfCareSurveyData", JSON.stringify(surveyDataArray));
 
-        console.log("Data saved to local storage");
+        //console.log("Data saved to local storage");
 
         // Redirect the user after submitting the survey
         redirectPage("./data.html"); // Replace with your actual data page URL
 
-        console.log("Redirection initiated");
+        //console.log("Redirection initiated");
     });
 });
 // Function to handle redirection
