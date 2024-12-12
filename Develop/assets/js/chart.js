@@ -1,5 +1,3 @@
-const back = document.getElementById("backButton");
-
 function prepareChartData() {
 // Retrieve data from localStorage
 const storedData = JSON.parse(localStorage.getItem("selfCareSurveyData")) || [];
@@ -10,7 +8,7 @@ const stressValues = [];
 const activityLabels = [];
 const activityValues = [];
 const frequencyLabels = ["Daily", "Weekly", "Biweekly", "Monthly", "Rarely", "Annually"];
-const frequencyValues = [0, 0, 0, 0, 0]; // Initialize counts for frequency categories
+const frequencyValues = [0, 0, 0, 0, 0, 0]; // Initialize counts for frequency categories
 
 storedData.forEach((entry) => {
     // Stressors data
@@ -62,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
           datasets: [
               {
                   data: stress.values,
-                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF7F50", "#FF22AB", "#DFFF00",],
               },
           ],
       },
@@ -83,7 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
           datasets: [
               {
                   data: activity.values,
-                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", 
+                    "#9966FF", "#FF7F50", "#FF22AB", "#DFFF00", 
+                    "#00FF00", "#00FFFF", "#FFF8DC", "#FF0000", "#0000CD"],
               },
           ],
       },
@@ -107,8 +107,8 @@ new Chart(frequencyCtx, {
             {
                 label: "Frequency",
                 data: frequency.values, // The count of occurrences for each frequency category
-                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
-                borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+                backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF22AB"],
+                borderColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF22AB"],
                 borderWidth: 1,
             },
         ],
